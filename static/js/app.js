@@ -29,7 +29,8 @@ d3.json(`/samples/${sample}`).then(function(data) {
     x: sampleData.otu_ids,
     y: sampleData.sample_values,
     mode: 'markers',
-    labels: sampleData.otu_labels, 
+    labels: sampleData.otu_labels,
+    text: sampleData.otu_labels,
     marker: {
       size: sampleData.sample_values,
       color: sampleData.otu_ids,
@@ -44,17 +45,15 @@ d3.json(`/samples/${sample}`).then(function(data) {
   };
   Plotly.newPlot('bubble', trace1, layout);
 
-//   var pieValues = sampleData.sample_values.sort(function compareFunction(firstNum, secondNum) {
-//     return secondNum - firstNum;
-// }).slice(0,10);
-// console.log(pieValues);
   var pieData = sampleData.sample_values.slice(0,10);
   var pieLabels = sampleData.otu_ids.slice(0,10);
+  var pieHover = sampleData.otu_labels.slice(0,10);
   var trace2 = [{
     values: pieData,
     labels: pieLabels,
+    hovertext: pieHover,
     type: 'pie'
-  }]
+  }];
 
   var layout2 = {
     height: 400,
